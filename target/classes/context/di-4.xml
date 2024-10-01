@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      https://www.springframework.org/schema/context/spring-context.xsd">
+
+	<!-- 스프링 설정파일 
+			+ 스프링 컨테이너가 생성할 객체를 지정한다. 
+				<bean id="식별자명" class="패키지명을 포함한 클래스이름"></bean> 
+			
+			+ 스프링 컨테이너가 조립에 필요한 정보를 제공한다.
+				Setter 메소드를 이용한 의존성 주입 
+				<property name="멤버변수이름" ref="bean 태그의 식별자명"></property> 
+				<property name="멤버변수이름" value="기본자료형값"></property>
+				
+				생성자 메소드를 이용한 의존성 주입
+				<constructor-arg name="생성자의 매개변수이름" ref="bean 태그의 식별자명">
+				<constructor-arg name="생성자의 매개변수이름" value="기본자료형값">
+					* 매개변수가 여러개인 경우 매개변수를 다 맞게 채워야한다.
+					(매개변수가 3개인 경우)
+					<constructor-arg name="생성자의 매개변수이름" value="기본자료형값">
+					<constructor-arg name="생성자의 매개변수이름" value="기본자료형값">
+					<constructor-arg name="생성자의 매개변수이름" value="기본자료형값">
+				
+			class UserService { 
+			// 의존하는 객체가 조립되는 멤버변수 
+			private UserDao userDao; 
+			// 의존성 주입에 사용되는 Setter 메소드 
+			public void setUserDao(UserDao userDao) { 
+				t
+				his.userDao = userDao; 
+				} 
+			} 
+	-->
+	<bean id="sms" class="di_4.spring.SmsMessageSender"></bean>
+	<bean id="kakao" class="di_4.spring.KakaoTalkMessageSender"></bean>
+
+	<!-- Setter 메소드를 이용한 의존성 주입 -->
+	<bean id="service" class="di_4.spring.NotificationService">
+		<property name="messageSender" ref="kakao"></property>
+	</bean>
+	
+	<!-- 
+	
+		생성자 메소드를 이용한 의존성 주입
+		
+		* NotificationService에는 매개변수가 한 개인 생성자가 필요하다.
+		* 생성자의 매개변수 명은 messageSender다.
+		* 생성자의 매개변수 타입은 sms객체를 전달받을 수 있는 타입이어야 한다.
+		
+		<bean id="service2" class="di_4.spring.NotificationService">
+		<constructor-arg name="messageSender" ref="kakao"></constructor-arg>
+		</bean>
+		
+		* NotificationService에는 매개변수가 한 개인 생성자가 필요하다.
+		* 생성자의 매개변수 이름은 messageSender와 customerDao다.
+		* 생성자의 매개변수 타입은 sms객체를 전달받을 수 있는 타입이어야 한다.
+		
+		<bean id="service2" class="di_4.spring.NotificationService">
+			<constructor-arg name="messageSender" ref="sms"></constructor-arg>
+			<constructor-arg name="customerDao" ref="cDao"></constructor-arg>
+		</bean>
+		
+	
+	-->
+	<bean id="service1" class="di_4.spring.NotificationService">
+		<constructor-arg name="messageSender" ref="sms"></constructor-arg>
+	</bean>
+	<bean id="service2" class="di_4.spring.NotificationService">
+		<constructor-arg name="messageSender" ref="kakao"></constructor-arg>
+	</bean>
+	
+</beans>
