@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      https://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context
+      https://www.springframework.org/schema/context/spring-context.xsd">
+     <!-- 
+     	<context:component-scan /> 태그
+     		+ 스프링 컨테이너에 등록될 준비가 된 클래스를 스캔해서 스프링의 빈으로 등록시킨다.
+     		+ 등록된 빈의 의존관계를 조사해서 의존성을 주입한다.
+     			* 실제로는 위의 작업을 수행하는 여러개의 xxxAnnotationProcessor 객체를
+     			  스프링 컨테이너의 빈으로 등록시킨다.
+      --> 
+	<context:component-scan base-package="di_7.prop" />
+	
+	<!-- 
+		<context:property-placeholder /> 태그
+			+ PropertiesPlaceholderConfigure 객체를
+			  스프링의 빈으로 등록시킨다.
+			  * 지정된 위치의 properties 파일에 설정된 설정정보를 읽어온다.
+			  * 스프링 컨테이너에 등록된 모든 빈을 조사해서
+			    @Value 어노테이션을 분석해서 적절한 설정값을 주입한다.
+	 -->
+	<context:property-placeholder location="/context/di-7.properties" />
+	
+</beans>

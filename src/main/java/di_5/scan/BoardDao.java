@@ -19,4 +19,5 @@ public class BoardDao implements Dao{
 		System.out.println("내용: " + content);
 		System.out.println("BoardDao의 insert() 메소드 종료됨");
 	}
+	
 }
