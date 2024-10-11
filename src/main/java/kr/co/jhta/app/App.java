@@ -6,7 +6,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import kr.co.jhta.mapper.JobMapper;
+import kr.co.jhta.mapper.UserMapper;
 import kr.co.jhta.vo.Job;
+import kr.co.jhta.vo.User;
 
 public class App {
 	public static void main(String[] args) {
@@ -31,5 +33,7 @@ public class App {
 //		job.setMaxSalary(8000);
 //		
 //		jobMapper.insertJob(job);
+		
+
 	}
 }

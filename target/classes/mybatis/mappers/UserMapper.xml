@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.jhta.mapper.UserMapper">
+
+	<insert id="insertUser" parameterType = "kr.co.jhta.vo.User">
+		insert into TB_USERS
+		(user_no
+			, user_id
+			, user_password
+			, user_name
+			, user_email)
+		values
+		(user_seq.nextval
+			, #{user.id}
+			, #{user.password}
+			, #{user.name}
+			, #{user.email})
+	</insert>
+	
+	<select id="getUserById" resultType="kr.co.jhta.vo.User">
+		select 
+			user_no 			as no
+			, user_id 			as id
+			, user_password		as password
+			, user_email 		as email
+			, user_name 		as name
+			, user_created_date as createdDate
+			, user_updated_date as updatedDate
+		from 
+			TB_USERS
+		where 
+			user_id = #{id}
+	</select>
+	
+	<select id="getUserByNo" resultType="kr.co.jhta.vo.User">
+		select 
+			user_no 			as no
+			, user_id 			as id
+			, user_password		as password
+			, user_email 		as email
+			, user_name 		as name
+			, user_created_date as createdDate
+			, user_updated_date as updatedDate
+		from 
+			TB_USERS
+		where 
+			user_id = #{no}
+	</select>
+	
+	<select id="getUserByName" resultType="kr.co.jhta.vo.User">
+		select 
+			user_no 			as no
+			, user_id 			as id
+			, user_password		as password
+			, user_email 		as email
+			, user_name 		as name
+			, user_created_date as createdDate
+			, user_updated_date as updatedDate
+		from 
+			TB_USERS
+		where 
+			user_name = #{name}
+	</select>
+	
+	<select id="getAllUsers" resultType="kr.co.jhta.vo.User">
+		select 
+			user_no 			as no
+			, user_id 			as id
+			, user_password		as password
+			, user_email 		as email
+			, user_name 		as name
+			, user_created_date as createdDate
+			, user_updated_date as updatedDate
+		from 
+			TB_USERS
+	</select>
+	
+	
+
+</mapper>
