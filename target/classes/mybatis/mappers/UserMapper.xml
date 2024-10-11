@@ -2,6 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.jhta.mapper.UserMapper">
+	
+	
+	<!-- 
+		<resultMap id="고유한 이름" type="조회결과를 담은 객체의 전체이름"/>
+			+ 데이터 조회결과를 지정된 객체와 매핑 시킨다.
+			+ resultMap을 이용하면 별칭 설정없이 컬럼의 값을 
+			  객체의 멤버변수에 대입할 수 있다.
+			+ <id /> 태그는 테이블의 기본키 컬럼값을 멤버변수에 매핑 시킬 때 사용한다.
+			+ <result /> 태그는 기본키 컬럼이 아닌 일반 컬럼값을 매핑시킬 때 사용한다.
+			+ <resultMap /> 태그는 일반적으로 간단한 조회 결과를 매핑할 때는 
+			  잘 사용하지 않으며, 매우 복잡한 조회결과를 매핑할 때 사용한다.   
+	 -->
+	<resultMap type="kr.co.jhta.vo.User" id="userResultMap">
+		<id property="no" 				column="USER_NO" />
+		<result property="id" 			column="USER_ID" />
+		<result property="password" 	column="USER_PASSWORD" />
+		<result property="name" 		column="USER_NAME" />
+		<result property="email" 		column="USER_EAMIL" />
+		<result property="createdDate" 	column="USER_CREATED_DATE" />
+		<result property="updatedDate"	column="USER_UPDATED_DATE" />
+	</resultMap>
 
 	<insert id="insertUser" parameterType = "kr.co.jhta.vo.User">
 		insert into TB_USERS
@@ -45,18 +66,15 @@
 		from 
 			TB_USERS
 		where 
-			user_id = #{no}
+			user_no = #{no}
 	</select>
 	
-	<select id="getUserByName" resultType="kr.co.jhta.vo.User">
+	<!-- 
+		List<User> getUserByName
+	 -->
+	<select id="getUserByName" resultMap="userResultMap">
 		select 
-			user_no 			as no
-			, user_id 			as id
-			, user_password		as password
-			, user_email 		as email
-			, user_name 		as name
-			, user_created_date as createdDate
-			, user_updated_date as updatedDate
+			*
 		from 
 			TB_USERS
 		where 

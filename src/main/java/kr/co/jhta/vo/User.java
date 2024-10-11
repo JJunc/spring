@@ -2,6 +2,21 @@ package kr.co.jhta.vo;
 
 import java.util.Date;
 
+import org.apache.ibatis.type.Alias;
+
+/*
+ * @Alias("타입별칭")
+ *  + 매퍼파일에서 사용할 클래스의 별칭을 지정한다.
+ *  + 아래와 같이 @Alias("User")라고 설정하고 나면
+ *  	<insert id="insertUser" parameterType="kr.co.jhta.vo.User">
+ *  		parameterType 속성에 클래스의 전체이름 대신 별칭을 지정할 수 있다.
+ *  		<insert id="insertUser" parameterType="User">
+ *  
+ *  	<select id="getUserById" resultType="kr.co.jhta.vo.User">
+ *  		resultType 속성에 클래스의 전체이름 대신 별칭을 지정할 수 있다.
+ *  		<select id="getUserById" resultType="User">
+ */
+//@Alias("User")
 public class User {
 	
 	private int no;

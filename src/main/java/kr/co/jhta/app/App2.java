@@ -23,8 +23,8 @@ public class App2 {
 //		userMapper.insertUser(user);
 		User user1 = userMapper.getUserById("hong");
 		System.out.println("아이디: " + user1.getId());
-		User user2 = userMapper.getUserByName("홍길동");
-		System.out.println("이름: " + user2.getName());
+		List<User> user2 = userMapper.getUserByName("홍길동");
+
 		User user3 = userMapper.getUserByNo(1);
 		System.out.println("번호: " + user3.getNo());
 		List<User> users = userMapper.getAllUsers();
